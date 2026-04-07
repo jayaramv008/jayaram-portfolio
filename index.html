@@ -1381,26 +1381,24 @@
 
   // ─── Resume Download ──────────────────────────────────────
   function downloadResume() {
-    // Create a simple notification since no PDF is attached
-    const notice = document.createElement('div');
-    notice.style.cssText = `
-      position:fixed;bottom:24px;right:24px;z-index:9999;
-      padding:14px 20px;border-radius:12px;
-      background:rgba(139,92,246,.95);color:#fff;
-      font-family:'Outfit',sans-serif;font-size:.9rem;font-weight:500;
-      box-shadow:0 8px 32px rgba(139,92,246,.4);
-      animation:fadeSlideUp .4s ease;
-      display:flex;align-items:center;gap:10px;
-    `;
-    notice.innerHTML = '<span>📄</span> Replace this with your actual PDF resume file!';
-    document.body.appendChild(notice);
-    setTimeout(() => {
-      notice.style.opacity = '0';
-      notice.style.transition = 'opacity .4s';
-      setTimeout(() => notice.remove(), 400);
-    }, 3500);
-    // In production: window.open('/resume-jayaram-v.pdf', '_blank');
-  }
+  // Download
+  const link = document.createElement('a');
+  link.href = '/JAYARAM V.pdf';
+  link.download = 'Jayaram-V-Resume.pdf';
+  link.click();
+
+  // Notification
+  const notice = document.createElement('div');
+  notice.innerText = '📄 Download started!';
+  notice.style.cssText = `
+    position:fixed;bottom:24px;right:24px;z-index:9999;
+    padding:14px 20px;border-radius:12px;
+    background:rgba(34,197,94,.95);color:#fff;
+  `;
+  document.body.appendChild(notice);
+
+  setTimeout(() => notice.remove(), 3000);
+}
 
   // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(a => {
